@@ -21,8 +21,8 @@ from core import SystemInfo
 # IMPORT THE QUESTIONS AND ANSWERS LISTS LIBRARY
 # ===========================================================
 
-from lib import questions as qList
-from lib import answers as aList
+from lists import questions as qList
+from lists import answers as aList
 
 
 # ===========================================================
