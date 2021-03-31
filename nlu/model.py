@@ -20,37 +20,39 @@ for command in data['commands']:
 
 # Creating a dataset
 
-    # Choosing a level of tokenization: words, chars, BPEs
-chars = set()
-    # Read all chars in the dataset
-for i in inputs + outputs:
-    for ch in i:
-        if ch not in chars:
-            chars.add(ch)
-    
-    # Map each char to an index
-char2idx = {}
-idx2char = {}
-
-for k, ch in enumerate(chars):
-    char2idx[ch]
-    idx2char[k]
+    # Choosing a level of tokenization: byte-level -> static vocab, handles out out-vocabulary
 
     # Create input data
 max_sent = max([len(x) for x in inputs])
     
-    # Create arrays
-input_data = np.zeros((len(inputs), max_sent, len(chars)), dtype='int32')
+    # Create arrays one-hot encoding (no of examples, seq length, vocab_size)
+    # Create arrays sparse encoding (no of examples, seq length)
+input_data = np.zeros((len(inputs), max_sent, 256), dtype='float32')
 
-for i, input in enumerate(inputs):
-    for k, ch in enumerate(input):
-        input_data[i, k, char2idx[ch]]
+for i, inp in enumerate(inputs):
+    for k, ch in enumerate(inp.encode('utf-8')):
+        input_data[i, k, int(ch)] = 1.0
 
-output_data = np.eye()
 # output_data = to_categorical(output_data, len(output_data))
 
-print(output_data[0])
+# print(input_data[0].shape)
 
 #print(input_data.shape)
 # print(len(chars))
 # print('Max input seq: ', max_sent)
+
+labels = set(outputs)
+
+label2idx = dict()
+idx2label = dict()
+
+for k, label in enumerate(labels):
+    label2idx[label] = k
+    idx2label[k] = label
+
+output_data = list()
+
+for output in outputs:
+    output_data.append(label2idx[output])
+
+print(output_data)
