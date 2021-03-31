@@ -12,7 +12,4 @@
 #### **Features** / **Technologies**
  * Speech Recognition: {_Vosk_}
  * Speech Syntesis: {_Pyttsx3_}
- * Some sort of AI
-
-#### **Challenges of a Visrtual Assistant**
- * Understand what the user wants: NLU {_data-driven_}
+ * _NLU_: Deep Learning library built with Keras

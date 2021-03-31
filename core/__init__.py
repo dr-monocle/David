@@ -11,3 +11,17 @@ class SystemInfo:
         # Now = now.strftime('%H:%M')
         ans = [now.hour, now.minute]
         return ans
+
+    """@staticmethod
+    def get_date():
+        now = datetime.datetime.now()
+        # Now = now.strftime('%H:%M')
+        ans = [now.hour, now.minute]
+        return ans"""
+    
+    @staticmethod
+    def get_year():
+        now = datetime.datetime.now()
+        # Now = now.strftime('%H:%M')
+        ans = now.year()
+        return ans
