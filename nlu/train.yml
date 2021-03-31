@@ -6,7 +6,7 @@ commands:
     action: getTime
   # Date
   - command:
-    input: date
+    input: [date, day]
     entity: time
     action: getDate
   # Year
