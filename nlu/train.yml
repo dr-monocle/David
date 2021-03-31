@@ -19,4 +19,9 @@ commands:
     input: weather
     entity: time
     action: getWeather
+  # Open
+  - command:
+    input: open google
+    entity: open
+    action: google
   
