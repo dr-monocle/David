@@ -13,3 +13,6 @@
  * Speech Recognition: {_Vosk_}
  * Speech Syntesis: {_Pyttsx3_}
  * Some sort of AI
+
+#### **Challenges of a Visrtual Assistant**
+ * Understand what the user wants.
