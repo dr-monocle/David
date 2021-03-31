@@ -1,0 +1,5 @@
+time\getDate
+time\getYear
+open\google
+time\getTime
+time\getWeather

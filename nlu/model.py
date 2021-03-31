@@ -43,6 +43,13 @@ for i, inp in enumerate(inputs):
 
 labels = set(outputs)
 
+with open('nlu\\entities.txt', 'w', encoding='utf-8') as f:
+    for label in labels:
+        f.write(label + '\n')
+    f.close()
+
+labels = open('nlu\\entities.txt', 'r', encoding='utf-8').read().split('\n')
+
 label2idx = dict()
 idx2label = dict()
 
@@ -66,6 +73,8 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc']
 
 model.fit(input_data, output_data, epochs=256)
 
+model.save('nlu\\model.h5')
+
 # Classify any given text into a category of NLU framework
 def classify(text):
     # Create input array
@@ -78,8 +87,11 @@ def classify(text):
     out = model.predict(x)
     idx = out.argmax()
 
-    print(f'Text: "{text}" is classified as "{idx2label[idx]}".')
+    # print(f'Text: "{text}" is classified as "{idx2label[idx]}".')
 
-while True:
-    text = input('Enter some text: ')
-    classify(text)
+    return idx2label
+
+"""if __name__ == '__main__':
+    while True:
+        text = input('Enter some text: ')
+        classify(text)"""

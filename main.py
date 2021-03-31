@@ -18,6 +18,12 @@ import random as rdm
 from core import SystemInfo
 
 # ===========================================================
+# IMPORT NLU CLASSIFIER
+# ===========================================================
+
+from nlu.classifier import classify
+
+# ===========================================================
 # IMPORT THE QUESTIONS AND ANSWERS LISTS LIBRARY
 # ===========================================================
 
