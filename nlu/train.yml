@@ -5,12 +5,12 @@ commands:
     entity: time
     action: getTime
   # Date
-    - command:
+  - command:
     input: date
     entity: time
     action: getDate
   # Year
-    - command:
+  - command:
     input: year
     entity: time
     action: getYear
