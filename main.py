@@ -68,13 +68,17 @@ def listen():
 # SEARCH FUNCTION CONFIGURATION
 # ===========================================================
 
-def search(string, listy):
+def search(string, list):
     if string == None:
         string = 'aqwrterhs'
-    if any(string in s for s in listy):
-        return True
-    else:
-        return False
+    ans = False
+    #if any(string in s for s in list):
+    for s in list:
+        if s in string:
+            ans = True
+            return ans
+
+    # return ans
 
 # ===========================================================
 # WELCOME SCREEN
@@ -95,11 +99,13 @@ speak('Setting up your preferences...')
 print('[LOG] Done!')
 sleep(0.5)
 
-print(""" ____                 _      _ 
+print("""
+ ____                 _      _ 
 |  _ \   __ _ __   __(_)  __| |
 | | | | / _` |\ \ / /| | / _` |
 | |_| || (_| | \ V / | || (_| |
-|____/  \__,_|  \_/  |_| \__,_|""")
+|____/  \__,_|  \_/  |_| \__,_|
+""")
 sleep(0.5)
 speak('I am ready now!')
 print('Hello, I\'m David, your AI Virtual Assistant!')
@@ -126,12 +132,12 @@ while True:
 
     # 1. Tell Time
     
-    if search(text, qList.timeL):
+    if search(text, qList.time):
 
     #if text == None:
     #    text = 'aqwrterhs'
 
-    #    if any(qList.timeL) in text:
+    #    if any(qList.time) in text:
         if len(str(SystemInfo.get_time()[0])) == 2:
             strHr = str(SystemInfo.get_time()[0])
         else:
@@ -152,7 +158,9 @@ while True:
         speak(timeChoiceS + spkHr +
                 ' hours and ' + spkMin + ' minutes.')
 
-    elif search(text, qList.exitL):
+    # Shutdown System
+
+    elif search(text, qList.exit):
         print('Are you sure that you want to close David?')
         speak('Are you sure that you want to close David?')
 
