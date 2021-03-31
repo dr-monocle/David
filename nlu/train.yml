@@ -1,7 +1,22 @@
 commands:
-  # Time commands
+  # Time
   - command:
-    input: ['what time is it', 'what time is', 'what is the time', 'what is the time now', 'tell me the time', 'tell me what time is it', 'tell me what time is', 'tell me what is the time', 'tell me what is the time now', 'please what time is it', 'please tell me the time', 'time']
+    input: time
     entity: time
     action: getTime
+  # Date
+    - command:
+    input: date
+    entity: time
+    action: getDate
+  # Year
+    - command:
+    input: year
+    entity: time
+    action: getYear
+  # Weather
+  - command:
+    input: weather
+    entity: time
+    action: getWeather
   
