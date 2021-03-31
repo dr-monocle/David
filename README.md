@@ -15,4 +15,4 @@
  * Some sort of AI
 
 #### **Challenges of a Visrtual Assistant**
- * Understand what the user wants.
+ * Understand what the user wants: NLU {_data-driven_}
