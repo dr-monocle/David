@@ -18,6 +18,12 @@ import random as rdm
 from core import SystemInfo
 
 # ===========================================================
+# IMPORT COLORS LIBRARY
+# ===========================================================
+
+import colors as cl
+
+# ===========================================================
 # IMPORT THE QUESTIONS AND ANSWERS LISTS LIBRARY
 # ===========================================================
 
@@ -95,7 +101,7 @@ def search(string, list):
 
 sleep(0.2)
 
-print('[LOG] Getting all engines ready...')
+print(cl.fg_Green, '[LOG]', cl.reset, 'Getting all engines ready...', cl.reset)
 
 # ===========================================================
 # IMPORT NLU CLASSIFIER
@@ -109,27 +115,27 @@ from nlu.model import inputs
 # ===========================================================
 
 speak('Getting all engines ready...')
-print('[LOG] Done!')
+print(cl.fg_Green, '[LOG]', cl.reset, cl.bold, 'Done!', cl.reset)
 sleep(0.3)
-print('[LOG] Starting up system...')
+print(cl.fg_Green, '[LOG]', cl.reset, 'Starting up system...', cl.reset)
 speak('Starting up system...')
-print('[LOG] Done!')
+print(cl.fg_Green, '[LOG]', cl.reset, cl.bold, 'Done!', cl.reset)
 sleep(0.3)
-print('[LOG] Setting up your preferences...')
+print(cl.fg_Green, '[LOG]', cl.reset, 'Setting up your preferences...', cl.reset)
 speak('Setting up your preferences...')
-print('[LOG] Done!')
+print(cl.fg_Green, '[LOG]', cl.reset, cl.bold, 'Done!', cl.reset)
 sleep(0.3)
 
-print("""
+print(cl.bold, cl.fg_Yellow, """
  ____                 _      _ 
 |  _ \   __ _ __   __(_)  __| |
 | | | | / _` |\ \ / /| | / _` |
 | |_| || (_| | \ V / | || (_| |
 |____/  \__,_|  \_/  |_| \__,_|
-""")
+""", cl.reset)
 sleep(0.3)
 speak('I am ready now!')
-print('Hello, I\'m David, your AI Virtual Assistant!')
+print('Hello, I\'m ' + cl.bold + cl.fg_Red + 'David' + cl.reset + ', your AI Virtual Assistant!')
 speak('Hello! Ready to work?')
 
 # ===========================================================

@@ -36,5 +36,10 @@ bg_bMagenta = '\u001b[35;1m'
 bg_bCyan = '\u001b[36;1m'
 bg_bWhite = '\u001b[37;1m'
 
+# Font styles
+bold = '\u001b[1m'
+underline = '\u001b[4m'
+reversed = '\u001b[7m'
+
 # Reset
 reset   = '\u001b[0m'
