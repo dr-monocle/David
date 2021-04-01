@@ -13,3 +13,6 @@
  * Speech Recognition: {_Vosk_}
  * Speech Syntesis: {_Pyttsx3_}
  * _NLU_: Deep Learning library built with Keras
+
+#### **Functionalities**
+ * Open Programs
