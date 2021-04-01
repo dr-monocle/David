@@ -10,6 +10,13 @@ import pyttsx3
 import json
 from time import sleep
 import random as rdm
+import colorama as col
+
+# ===========================================================
+# INITIALIZING COLORAMA
+# ===========================================================
+
+col.init()
 
 # ===========================================================
 # IMPORT THE CORE LIBRARY
@@ -45,6 +52,7 @@ def speak(text):
 # INPUT FUNCTION CONFIGURATION
 # ===========================================================
 
+
 SetLogLevel(-1)
 
 model = Model('model')
@@ -54,6 +62,7 @@ p = pyaudio.PyAudio()
 stream = p.open(format=pyaudio.paInt16, channels=1, rate=16000,
                 input=True, frames_per_buffer=8000)
 stream.start_stream()
+
 
 def listen():
     data = stream.read(16000)
@@ -66,18 +75,19 @@ def listen():
         res = json.loads(res)
         # Taking only what user said
         text = res['text']
-        
+
         return text
 
 # ===========================================================
 # SEARCH FUNCTION CONFIGURATION
 # ===========================================================
 
+
 def search(string, list):
     if string == None:
         string = 'aqwrterhs'
     ans = False
-    #if any(string in s for s in list):
+    # if any(string in s for s in list):
     for s in list:
         if s in string:
             ans = True
@@ -88,6 +98,7 @@ def search(string, list):
 # ===========================================================
 # WELCOME SCREEN #Part 1
 # ===========================================================
+
 
 sleep(0.2)
 
@@ -133,7 +144,7 @@ speak('Hello! Ready to work?')
 # ===========================================================
 
 while True:
-    
+
     text = listen()
 
     if text == '':
@@ -150,9 +161,9 @@ while True:
     text = search(text, inputs)
 
     if text == None:
-        text = ''
-
-    entity = classify(text)
+        entity = None
+    else:
+        entity = classify(text)
 
     # 1. Get Time
 
@@ -196,8 +207,55 @@ while True:
             spkStr = timeChoiceS + spkHr + '.'
         else:
             spkStr = timeChoiceS + spkHr + ' ' + spkMin + '.'
-        
+
         print(prt)
         speak(spkStr)
 
+    elif entity == 'time\\getDate':
+        dateL = SystemInfo.get_date()
 
+        day = str(dateL[0])
+        month = str(dateL[1])
+        year = str(dateL[2])
+
+        if len(day) == 2:
+            strDay = day
+        else:
+            strDay = '0' + day
+        
+        if len(month) == 2:
+            strMonth = month
+        else:
+            strMonth = '0' + month
+
+        # Day to speak
+        if len(day) == 1:
+            if day == '1':
+                day = '1st'
+            elif day == '2':
+                day = '2nd'
+            elif day == '3':
+                day = '3rd'
+            else:
+                day = day + 'th'
+        elif len(day) == 2:
+            if day[1] == '1' and day != '11':
+                day = day + 'st'
+            elif day[1] == '2' and day != '12':
+                day = day +'nd'
+            elif day[1] == '3' and day != '13':
+                day = day + 'rd'
+            else:
+                day = day + 'th'
+
+        # Month to speak
+        month = aList.monthL[int(month)]
+
+        dateChoiceS = rdm.choice(aList.dateSL)
+        dateChoiceP = rdm.choice(aList.datePL)
+
+        strSpk = dateChoiceS + 'the ' + day + ' of ' + month + ' of the year of ' + year + '.'
+        strPrt = dateChoiceP + strDay + '/' + strMonth + '/' + year + '.'
+
+        print(strPrt)
+        speak(strSpk)
