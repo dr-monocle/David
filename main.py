@@ -27,8 +27,7 @@ import colors as cl
 # IMPORT THE QUESTIONS AND ANSWERS LISTS LIBRARY
 # ===========================================================
 
-from lists import questions as qList
-from lists import answers as aList
+import lists.list as aList
 
 # ===========================================================
 # DEFINE TENSORFLOW LOG LEVEL

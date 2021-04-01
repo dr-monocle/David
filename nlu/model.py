@@ -24,7 +24,7 @@ for command in data['commands']:
     # Choosing a level of tokenization: byte-level -> static vocab, handles out out-vocabulary
 
     # Create input data
-max_sent = max([len(x) for x in inputs])
+max_sent = max([len(bytes(x.encode('utf-8'))) for x in inputs])
 
 # Create arrays one-hot encoding (no of examples, seq length, vocab_size)
 # Create arrays sparse encoding (no of examples, seq length)
@@ -83,7 +83,7 @@ model.save('nlu\\model.h5')
 # Classify any given text into a category of NLU framework
 
 
-def classify(text):
+"""def classify(text):
     # Create input array
     x = np.zeros((1, max_sent, 256), dtype='float32')
 
@@ -96,10 +96,10 @@ def classify(text):
 
     # print(f'Text: "{text}" is classified as "{idx2label[idx]}".')
 
-    return idx2label
+    return idx2labe
 
 
-"""if __name__ == '__main__':
+if __name__ == '__main__':
     while True:
         text = input('Enter some text: ')
         classify(text)"""
