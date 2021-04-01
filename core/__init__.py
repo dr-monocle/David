@@ -20,9 +20,4 @@ class SystemInfo:
         ans = [now.day, now.month, now.year]
         return ans
     
-    """@staticmethod
-    def get_year():
-        now = datetime.datetime.now()
-        # Now = now.strftime('%H:%M')
-        ans = now.year()
-        return ans"""
+    
