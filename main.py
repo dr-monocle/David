@@ -139,6 +139,9 @@ while True:
 
     text = search(text, inputs)
 
+    if text == None:
+        text = ''
+
     entity = classify(text)
 
     # 1. Get Time
