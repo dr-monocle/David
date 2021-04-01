@@ -1,5 +1,5 @@
-open\google
-time\getWeather
-time\getDate
-time\getTime
 time\getYear
+time\getTime
+open\google
+time\getDate
+time\getWeather

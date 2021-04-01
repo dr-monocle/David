@@ -18,19 +18,17 @@ import random as rdm
 from core import SystemInfo
 
 # ===========================================================
-# IMPORT NLU CLASSIFIER
-# ===========================================================
-
-from nlu.classifier import classify
-from nlu.model import inputs
-
-# ===========================================================
 # IMPORT THE QUESTIONS AND ANSWERS LISTS LIBRARY
 # ===========================================================
 
 from lists import questions as qList
 from lists import answers as aList
 
+# ===========================================================
+# DEFINE TENSORFLOW LOG LEVEL
+# ===========================================================
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # ===========================================================
 # OUTPUT FUNCTION CONFIGURATION
@@ -88,23 +86,35 @@ def search(string, list):
     # return ''
 
 # ===========================================================
-# WELCOME SCREEN
+# WELCOME SCREEN #Part 1
 # ===========================================================
 
-sleep(0.1)
+sleep(0.2)
 
 print('[LOG] Getting all engines ready...')
+
+# ===========================================================
+# IMPORT NLU CLASSIFIER
+# ===========================================================
+
+from nlu.classifier import classify
+from nlu.model import inputs
+
+# ===========================================================
+# WELCOME SCREEN #Part 2
+# ===========================================================
+
 speak('Getting all engines ready...')
 print('[LOG] Done!')
-sleep(0.5)
+sleep(0.3)
 print('[LOG] Starting up system...')
 speak('Starting up system...')
 print('[LOG] Done!')
-sleep(0.5)
+sleep(0.3)
 print('[LOG] Setting up your preferences...')
 speak('Setting up your preferences...')
 print('[LOG] Done!')
-sleep(0.5)
+sleep(0.3)
 
 print("""
  ____                 _      _ 
@@ -113,7 +123,7 @@ print("""
 | |_| || (_| | \ V / | || (_| |
 |____/  \__,_|  \_/  |_| \__,_|
 """)
-sleep(0.5)
+sleep(0.3)
 speak('I am ready now!')
 print('Hello, I\'m David, your AI Virtual Assistant!')
 speak('Hello! Ready to work?')
@@ -147,24 +157,47 @@ while True:
     # 1. Get Time
 
     if entity == 'time\\getTime':
-        if len(str(SystemInfo.get_time()[0])) == 2:
-            strHr = str(SystemInfo.get_time()[0])
-        else:
-            strHr = '0' + str(SystemInfo.get_time()[0])
 
-        if len(str(SystemInfo.get_time()[1])) == 2:
-            strMin = str(SystemInfo.get_time()[1])
+        spkList = SystemInfo.get_time()
+
+        spkHr = str(spkList[0])
+        spkMin = str(spkList[1])
+
+        if len(spkHr) == 2:
+            strHr = spkHr
         else:
-            strMin = '0' + str(SystemInfo.get_time()[1])
+            strHr = '0' + spkHr
+
+        if len(spkMin) == 2:
+            strMin = spkMin
+        else:
+            strMin = '0' + spkMin
+
+        if strHr == '00' and strMin == '00':
+            spkHr = 'midnight'
+            spkMin = ''
+        elif strHr == '12' and strMin == '00':
+            strHrL = ['midday', 'noon', '12']
+            spkHr = rdm.choice(strHrL)
+            if strHr == '12':
+                spkMin = 'o\'clock'
+            else:
+                spkMin = ''
+        elif (strMin == '00' and strHr != '00') or (strMin == '00' and strHr != '12'):
+            spkMin = 'o\'clock'
 
         timeChoiceP = rdm.choice(aList.timePL)
         timeChoiceS = rdm.choice(aList.timeSL)
 
         prt = timeChoiceP + f'{strHr}:{strMin}.'
-        spkHr = str(SystemInfo.get_time()[0])
-        spkMin = str(SystemInfo.get_time()[1])
+        if strMin == 'o\'clock':
+            spkStr = timeChoiceS + spkHr + ' ' + spkMin + '.'
+        elif strMin == '':
+            spkStr = timeChoiceS + spkHr + '.'
+        else:
+            spkStr = timeChoiceS + spkHr + ' ' + spkMin + '.'
+        
         print(prt)
-        speak(timeChoiceS + spkHr +
-                ' hours and ' + spkMin + ' minutes.')
+        speak(spkStr)
 
 

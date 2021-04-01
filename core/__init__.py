@@ -9,17 +9,18 @@ class SystemInfo:
     def get_time():
         now = datetime.datetime.now()
         # Now = now.strftime('%H:%M')
+        # ans = Now.split(':')
         ans = [now.hour, now.minute]
         return ans
 
-    """@staticmethod
+    @staticmethod
     def get_date():
         now = datetime.datetime.now()
         # Now = now.strftime('%H:%M')
-        ans = [now.hour, now.minute]
+        ans = [now.day, now.month, now.year]
         return ans
     
-    @staticmethod
+    """@staticmethod
     def get_year():
         now = datetime.datetime.now()
         # Now = now.strftime('%H:%M')
