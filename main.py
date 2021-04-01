@@ -10,13 +10,6 @@ import pyttsx3
 import json
 from time import sleep
 import random as rdm
-import colorama as col
-
-# ===========================================================
-# INITIALIZING COLORAMA
-# ===========================================================
-
-col.init()
 
 # ===========================================================
 # IMPORT THE CORE LIBRARY
