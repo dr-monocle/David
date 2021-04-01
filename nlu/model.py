@@ -8,6 +8,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.utils import to_categorical
 
+
 data = yaml.safe_load(open('nlu/train.yml', 'r').read())
 
 # Reading the data
@@ -24,10 +25,13 @@ for command in data['commands']:
 
     # Create input data
 max_sent = max([len(x) for x in inputs])
-    
-    # Create arrays one-hot encoding (no of examples, seq length, vocab_size)
-    # Create arrays sparse encoding (no of examples, seq length)
+
+# Create arrays one-hot encoding (no of examples, seq length, vocab_size)
+# Create arrays sparse encoding (no of examples, seq length)
 input_data = np.zeros((len(inputs), max_sent, 256), dtype='float32')
+
+# print(input_data.shape)
+# exit()
 
 for i, inp in enumerate(inputs):
     for k, ch in enumerate(inp.encode('utf-8')):
@@ -37,7 +41,7 @@ for i, inp in enumerate(inputs):
 
 # print(input_data[0].shape)
 
-#print(input_data.shape)
+# print(input_data.shape)
 # print(len(chars))
 # print('Max input seq: ', max_sent)
 
@@ -69,13 +73,16 @@ model = Sequential()
 model.add(LSTM(128))
 model.add(Dense(len(labels), activation='softmax'))
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy', metrics=['acc'])
 
 model.fit(input_data, output_data, epochs=256)
 
 model.save('nlu\\model.h5')
 
 # Classify any given text into a category of NLU framework
+
+
 def classify(text):
     # Create input array
     x = np.zeros((1, max_sent, 256), dtype='float32')
@@ -90,6 +97,7 @@ def classify(text):
     # print(f'Text: "{text}" is classified as "{idx2label[idx]}".')
 
     return idx2label
+
 
 """if __name__ == '__main__':
     while True:

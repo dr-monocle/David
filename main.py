@@ -22,6 +22,7 @@ from core import SystemInfo
 # ===========================================================
 
 from nlu.classifier import classify
+from nlu.model import inputs
 
 # ===========================================================
 # IMPORT THE QUESTIONS AND ANSWERS LISTS LIBRARY
@@ -82,9 +83,9 @@ def search(string, list):
     for s in list:
         if s in string:
             ans = True
-            return ans
+            return s
 
-    # return ans
+    # return ''
 
 # ===========================================================
 # WELCOME SCREEN
@@ -136,14 +137,13 @@ while True:
     # AI FUNCTIONALITIES
     # ========================================================
 
-    # 1. Tell Time
-    
-    if search(text, qList.time):
+    text = search(text, inputs)
 
-    #if text == None:
-    #    text = 'aqwrterhs'
+    entity = classify(text)
 
-    #    if any(qList.time) in text:
+    # 1. Get Time
+
+    if entity == 'time\\getTime':
         if len(str(SystemInfo.get_time()[0])) == 2:
             strHr = str(SystemInfo.get_time()[0])
         else:
@@ -163,23 +163,5 @@ while True:
         print(prt)
         speak(timeChoiceS + spkHr +
                 ' hours and ' + spkMin + ' minutes.')
-
-    # Shutdown System
-
-    elif search(text, qList.exit):
-        print('Are you sure that you want to close David?')
-        speak('Are you sure that you want to close David?')
-
-        op = listen()
-
-        while op != None:
-
-            if op in 'yesyeahyapyayahyha':
-                print('Shutting down...')
-                speak('I will wait for the next time! Goodbye!')
-                exit()
-            
-            else: 
-                break
 
 
