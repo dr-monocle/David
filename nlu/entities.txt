@@ -1,4 +1,6 @@
-time\getWeather
+name\setName
 time\getTime
 open\google
 time\getDate
+time\getWeather
+name\readName

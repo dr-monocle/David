@@ -35,4 +35,13 @@ commands:
     input: open google
     entity: open
     action: google
+  # Name
+  - command:
+    input: set name
+    entity: name
+    action: setName
+  - command:
+    input: my name
+    entity: name
+    action: readName
   

@@ -38,6 +38,7 @@ bg_bWhite = '\u001b[37;1m'
 
 # Font styles
 bold = '\u001b[1m'
+italic = '\u001b[2m'
 underline = '\u001b[4m'
 reversed = '\u001b[7m'
 

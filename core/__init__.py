@@ -1,5 +1,7 @@
 import datetime
 from time import strftime
+import core.info
+
 
 class SystemInfo:
     def __init__(self):
@@ -19,5 +21,24 @@ class SystemInfo:
         # Now = now.strftime('%H:%M')
         ans = [now.day, now.month, now.year]
         return ans
-    
-    
+
+
+class NameInfo:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def set_name(name):
+        try:
+            data.name = name
+            return 'Action completed successfuly!'
+        
+        except:
+            return 'I could not set your name. Please try again.'
+        
+    @staticmethod
+    def get_name():
+        data = info.name
+              
+        return data
+

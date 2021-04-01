@@ -15,7 +15,7 @@ import random as rdm
 # IMPORT THE CORE LIBRARY
 # ===========================================================
 
-from core import SystemInfo
+from core import SystemInfo, NameInfo
 
 # ===========================================================
 # IMPORT COLORS LIBRARY
@@ -147,7 +147,7 @@ while True:
         print(choice)
         speak(choice)
 
-        break
+        # break
 
     # ========================================================
     # AI FUNCTIONALITIES
@@ -255,3 +255,31 @@ while True:
         print(strPrt)
         speak(strSpk)
 
+    elif entity == 'name\\readName':
+        name = NameInfo.get_name()
+
+        # print(name)
+
+        if name == '':
+            print('Your name is not yet in my system.')
+            speak('Your name is not yet in my system. Use ' + cl.italic + 'set name' + cl.reset + ' or ' + cl.italic + 'set my name' + cl.reset + 'to save it.')
+
+        else:
+            choice = rdm.choice(aList.getNameL)
+
+            print(choice + str(name).capitalize() + '.')
+
+            speak(choice + str(name))
+
+    elif entity == 'name\\setName':
+        print('What is your name?')
+        speak('What is your name?')
+        name = listen()
+
+        while name != '' and name != None:
+            res = NameInfo.set_name(name)
+
+        # print(name)
+
+        print(res)
+        speak(res)
