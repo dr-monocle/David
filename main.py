@@ -97,10 +97,8 @@ def search(string, list):
 # WELCOME SCREEN #Part 1
 # ===========================================================
 
-
-sleep(0.2)
-
 print(cl.fg_Green, '[LOG]', cl.reset, 'Getting all engines ready...', cl.reset)
+speak('Getting all engines ready...')
 
 # ===========================================================
 # IMPORT NLU CLASSIFIER
@@ -113,7 +111,6 @@ from nlu.model import inputs
 # WELCOME SCREEN #Part 2
 # ===========================================================
 
-speak('Getting all engines ready...')
 print(cl.fg_Green, '[LOG]', cl.reset, cl.bold, 'Done!', cl.reset)
 sleep(0.3)
 print(cl.fg_Green, '[LOG]', cl.reset, 'Starting up system...', cl.reset)
@@ -257,3 +254,4 @@ while True:
 
         print(strPrt)
         speak(strSpk)
+

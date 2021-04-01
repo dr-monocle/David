@@ -17,6 +17,9 @@ def classify(text):
     # Create input array
     x = np.zeros((1, 48, 256), dtype='float32')
 
+    if len(text) > 48:
+        text = text[:48]
+
     # Fill the x array with data from input text
     for k, ch in enumerate(bytes(text.encode('utf-8'))):
         x[0, k, int(ch)] = 1.0

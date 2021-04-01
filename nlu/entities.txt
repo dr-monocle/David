@@ -2,4 +2,3 @@ time\getWeather
 time\getTime
 open\google
 time\getDate
-time\getYear

@@ -13,11 +13,18 @@ commands:
     input: day
     entity: time
     action: getDate
-  # Year
   - command:
     input: year
     entity: time
-    action: getYear
+    action: getDate
+  - command:
+    input: month
+    entity: time
+    action: getDate
+  - command:
+    input: today
+    entity: time
+    action: getDate
   # Weather
   - command:
     input: weather
